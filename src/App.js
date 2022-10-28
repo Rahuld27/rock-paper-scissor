@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Route, Routes } from "react-router-dom"
 
-function App() {
+import GameUi from "./component/UI";
+import Score from "./component/score/score";
+import HomePage from "./component/homepage/homepage";
+import Footer from "./component/helpers/footer";
+
+
+function App(){
+  const [score, setScore] = useState(0);
+  const [userPreference, setUserPreference] = useState("");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+
+      <Score score={score} />
+
+      <Routes>
+        <Route exact path="/">
+          <HomePage setUserPreference={setUserPreference}/>
+        </Route>
+
+        <Route path="/rock-paper-scissors">
+          <GameUi userPreference={userPreference} score={score} setScore={setScore}/>
+        </Route>
+      </Routes>
+
+      <Footer />
+
     </div>
-  );
+  )
 }
 
 export default App;

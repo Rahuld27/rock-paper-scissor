@@ -2,36 +2,36 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Game = ({ score, myChoice, setScore }) => {
-  const [house, setHouse] = useState("");
+  const [computer, setcomputer] = useState("");
   const [playerWin, setPlayerWin] = useState("");
 
   const [counter, setCounter] = useState(3);
 
-  const newHousePick = () => {
+  const newcomputerPick = () => {
     const choices = ["rock", "paper", "scissors"];
-    setHouse(choices[Math.floor(Math.random() * 3)]);
+    setcomputer(choices[Math.floor(Math.random() * 3)]);
   };
   useEffect(() => {
-    newHousePick();
+    newcomputerPick();
   }, []);
 
   const Result = () => {
-    if (myChoice === "rock" && house === "scissors") {
+    if (myChoice === "rock" && computer === "scissors") {
       setPlayerWin("win");
       setScore(score + 1);
-    } else if (myChoice === "rock" && house === "paper") {
+    } else if (myChoice === "rock" && computer === "paper") {
       setPlayerWin("lose");
       setScore(score - 1);
-    } else if (myChoice === "scissors" && house === "paper") {
+    } else if (myChoice === "scissors" && computer === "paper") {
       setPlayerWin("win");
       setScore(score + 1);
-    } else if (myChoice === "scissors" && house === "rock") {
+    } else if (myChoice === "scissors" && computer === "rock") {
       setPlayerWin("lose");
       setScore(score - 1);
-    } else if (myChoice === "paper" && house === "rock") {
+    } else if (myChoice === "paper" && computer === "rock") {
       setPlayerWin("win");
       setScore(score + 1);
-    } else if (myChoice === "paper" && house === "scissors") {
+    } else if (myChoice === "paper" && computer === "scissors") {
       setPlayerWin("lose");
       setScore(score - 1);
     } else {
@@ -50,7 +50,7 @@ const Game = ({ score, myChoice, setScore }) => {
     return () => {
       clearInterval(timer);
     };
-  }, [counter, house]);
+  }, [counter, computer]);
 
   return (
     <div className="game">
@@ -65,7 +65,7 @@ const Game = ({ score, myChoice, setScore }) => {
       {playerWin == "win" && (
         <div className="game__play">
           <span className="text">You Win</span>
-          <Link to="/" className="play-again" onClick={() => setHouse()}>
+          <Link to="/" className="play-again" onClick={() => setcomputer()}>
             Play Again
           </Link>
         </div>
@@ -73,7 +73,7 @@ const Game = ({ score, myChoice, setScore }) => {
       {playerWin == "lose" && (
         <div className="game__play">
           <span className="text">You Lose</span>
-          <Link to="/" className="play-again" onClick={() => setHouse()}>
+          <Link to="/" className="play-again" onClick={() => setcomputer()}>
             Play Again
           </Link>
         </div>
@@ -81,18 +81,18 @@ const Game = ({ score, myChoice, setScore }) => {
       {playerWin == "draw" && (
         <div className="game__play">
           <span className="text">Draw</span>
-          <Link to="/" className="play-again" onClick={() => setHouse()}>
+          <Link to="/" className="play-again" onClick={() => setcomputer()}>
             Play Again
           </Link>
         </div>
       )}
 
-      <div className="game__house">
-        <span className="text">The House Picked</span>
+      <div className="game__computer">
+        <span className="text">The computer Picked</span>
         {counter == 0 ? (
           <div
-            className={`icon icon--${house} ${
-              playerWin == "lose" ? `icon icon--${house}--winner` : ""
+            className={`icon icon--${computer} ${
+              playerWin == "lose" ? `icon icon--${computer}--winner` : ""
             }`}
           ></div>
         ) : (
@@ -107,12 +107,12 @@ export default Game;
 
 /*
  my choice:{myChoice} <br />
-      House choice:{house} <br />
+      computer choice:{computer} <br />
       Result:
       {playerWin == "win" && <h2>You Win</h2>}
       {playerWin == "lose" && <h2>You lose</h2>}
       {playerWin == "draw" && <h2>Draw</h2>}
-      <Link to="/" onClick={() => setHouse()}>
+      <Link to="/" onClick={() => setcomputer()}>
         Play Again
       </Link>
 

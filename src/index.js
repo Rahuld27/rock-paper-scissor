@@ -1,13 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Router } from "react-router-dom";
 import App from "./App";
 import "./styles.scss";
 
-var mountNode = document.getElementById("app");
-ReactDOM.render(
-  <Router>
+var mountNode =  ReactDOM.createRoot(document.getElementById("app"))
+mountNode.render(
+  <React.StrictMode>
     <App />
-  </Router>,
-  mountNode
+  </React.StrictMode>
 );

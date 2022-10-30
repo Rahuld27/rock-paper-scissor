@@ -24,7 +24,7 @@
 
 
             &--paper{
-                @include icon($imageP,$paper-gradient);
+                @include iconMixin($imageP,$paper-gradient);
 
                 &--winner{
                 @include bigShadow($paper-gradient);
@@ -32,13 +32,13 @@
                 
             }
             &--scissors{
-                @include icon($imageS,$scissors-gradient);
+                @include iconMixin($imageS,$scissors-gradient);
                 &--winner{
                     @include bigShadow($scissors-gradient);
                     }
             }
             &--rock{
-                @include icon($imageR,$rock-gradient);
+                @include iconMixin($imageR,$rock-gradient);
 
                 &--winner{
                     @include bigShadow($rock-gradient);
@@ -94,21 +94,21 @@
 
 
             &--paper{
-                @include icon($imageP,$paper-gradient);
+                @include iconMixin($imageP,$paper-gradient);
 
                 &--winner{
                     @include bigShadow($paper-gradient);
                     }
             }
             &--scissors{
-                @include icon($imageS,$scissors-gradient);
+                @include iconMixin($imageS,$scissors-gradient);
 
                 &--winner{
                     @include bigShadow($scissors-gradient);
                     }
             }
             &--rock{
-                @include icon($imageR,$rock-gradient);
+                @include iconMixin($imageR,$rock-gradient);
 
                 &--winner{
                     @include bigShadow($rock-gradient);

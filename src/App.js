@@ -1,34 +1,30 @@
 import React, { useState } from "react";
-import { Route, Routes } from "react-router-dom"
+import Score from "./components/score/Score";
+import HomePage from "./components/homepage/Homepage";
+import GameUi from "./components/UI/GameUi";
+import Footer from "./components/helpers/Footer";
+import { Routes, Route } from "react-router-dom";
 
-import GameUi from "./component/UI";
-import Score from "./component/score/score";
-import HomePage from "./component/homepage/homepage";
-import Footer from "./component/helpers/footer";
-
-
-function App(){
+function App() {
+  const [preference, setPreference] = useState("");
   const [score, setScore] = useState(0);
-  const [userPreference, setUserPreference] = useState("");
+
   return (
-    <div className="container">
-
-      <Score score={score} />
-
-      <Routes>
-        <Route exact path="/">
-          <HomePage setUserPreference={setUserPreference}/>
-        </Route>
-
-        <Route path="/rock-paper-scissors">
-          <GameUi userPreference={userPreference} score={score} setScore={setScore}/>
-        </Route>
-      </Routes>
-
+    <>
+      <div className="container">
+        <Score score={score} />
+        <Routes>
+          <Route exact path="/">
+            <HomePage setPreference={setPreference} />
+          </Route>
+          <Route path="/game">
+            <GameUi preference={preference} score={score} setScore={setScore} />
+          </Route>
+        </Routes>
+      </div>
       <Footer />
-
-    </div>
-  )
+    </>
+  );
 }
 
 export default App;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const GameUiPage = ({ score, preference, setScore }) => {
+const Game = ({ score, myChoice, setScore }) => {
   const [house, setHouse] = useState("");
   const [playerWin, setPlayerWin] = useState("");
 
@@ -16,22 +16,22 @@ const GameUiPage = ({ score, preference, setScore }) => {
   }, []);
 
   const Result = () => {
-    if (preference === "rock" && house === "scissors") {
+    if (myChoice === "rock" && house === "scissors") {
       setPlayerWin("win");
       setScore(score + 1);
-    } else if (preference === "rock" && house === "paper") {
+    } else if (myChoice === "rock" && house === "paper") {
       setPlayerWin("lose");
       setScore(score - 1);
-    } else if (preference === "scissors" && house === "paper") {
+    } else if (myChoice === "scissors" && house === "paper") {
       setPlayerWin("win");
       setScore(score + 1);
-    } else if (preference === "scissors" && house === "rock") {
+    } else if (myChoice === "scissors" && house === "rock") {
       setPlayerWin("lose");
       setScore(score - 1);
-    } else if (preference === "paper" && house === "rock") {
+    } else if (myChoice === "paper" && house === "rock") {
       setPlayerWin("win");
       setScore(score + 1);
-    } else if (preference === "paper" && house === "scissors") {
+    } else if (myChoice === "paper" && house === "scissors") {
       setPlayerWin("lose");
       setScore(score - 1);
     } else {
@@ -57,12 +57,12 @@ const GameUiPage = ({ score, preference, setScore }) => {
       <div className="game__you">
         <span className="text">You Picked</span>
         <div
-          className={`icon icon--${preference} ${
-            playerWin === "win" ? `icon icon--${preference}--winner` : ""
+          className={`icon icon--${myChoice} ${
+            playerWin == "win" ? `icon icon--${myChoice}--winner` : ""
           }`}
         ></div>
       </div>
-      {playerWin === "win" && (
+      {playerWin == "win" && (
         <div className="game__play">
           <span className="text">You Win</span>
           <Link to="/" className="play-again" onClick={() => setHouse()}>
@@ -70,7 +70,7 @@ const GameUiPage = ({ score, preference, setScore }) => {
           </Link>
         </div>
       )}
-      {playerWin === "lose" && (
+      {playerWin == "lose" && (
         <div className="game__play">
           <span className="text">You Lose</span>
           <Link to="/" className="play-again" onClick={() => setHouse()}>
@@ -78,7 +78,7 @@ const GameUiPage = ({ score, preference, setScore }) => {
           </Link>
         </div>
       )}
-      {playerWin === "draw" && (
+      {playerWin == "draw" && (
         <div className="game__play">
           <span className="text">Draw</span>
           <Link to="/" className="play-again" onClick={() => setHouse()}>
@@ -89,10 +89,10 @@ const GameUiPage = ({ score, preference, setScore }) => {
 
       <div className="game__house">
         <span className="text">The House Picked</span>
-        {counter === 0 ? (
+        {counter == 0 ? (
           <div
             className={`icon icon--${house} ${
-              playerWin === "lose" ? `icon icon--${house}--winner` : ""
+              playerWin == "lose" ? `icon icon--${house}--winner` : ""
             }`}
           ></div>
         ) : (
@@ -103,10 +103,10 @@ const GameUiPage = ({ score, preference, setScore }) => {
   );
 };
 
-export default GameUiPage;
+export default Game;
 
 /*
- my choice:{preference} <br />
+ my choice:{myChoice} <br />
       House choice:{house} <br />
       Result:
       {playerWin == "win" && <h2>You Win</h2>}

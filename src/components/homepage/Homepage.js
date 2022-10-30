@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const HomePage = ({ SetUserPreference }) => {
+const HomePage = ({ setPreference }) => {
   const setChoice = (e) => {
-    SetUserPreference(e.target.dataset.id);
+    setPreference(e.target.dataset.id);
   };
 
   return (

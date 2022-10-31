@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const Game = ({ score, myChoice, setScore }) => {
+const Game = ({ score, preference, setScore }) => {
+  console.log('this is my choice ->',preference);
   const [computer, setcomputer] = useState("");
   const [playerWin, setPlayerWin] = useState("");
 
@@ -12,26 +13,30 @@ const Game = ({ score, myChoice, setScore }) => {
     setcomputer(choices[Math.floor(Math.random() * 3)]);
   };
   useEffect(() => {
+    console.log('computer choice is - ',computer);
     newcomputerPick();
-  }, []);
+  }, [computer]);
 
   const Result = () => {
-    if (myChoice === "rock" && computer === "scissors") {
+    if (preference === "rock" && computer === "scissors") {
       setPlayerWin("win");
       setScore(score + 1);
-    } else if (myChoice === "rock" && computer === "paper") {
+    } else if (preference === "rock" && computer === "paper") {
       setPlayerWin("lose");
       setScore(score - 1);
-    } else if (myChoice === "scissors" && computer === "paper") {
+    } else if (preference === "scissors" && computer === "paper") {
       setPlayerWin("win");
       setScore(score + 1);
-    } else if (myChoice === "scissors" && computer === "rock") {
+    } else if (preference === "scissors" && computer === "rock") {
       setPlayerWin("lose");
       setScore(score - 1);
-    } else if (myChoice === "paper" && computer === "rock") {
+    } else if (preference === "paper" && computer === "rock") {
       setPlayerWin("win");
       setScore(score + 1);
-    } else if (myChoice === "paper" && computer === "scissors") {
+    } else if (preference === "paper" && computer === "scissors") {
+      setPlayerWin("lose");
+      setScore(score - 1);
+    } else if (preference === "paper" && computer === "scissors") {
       setPlayerWin("lose");
       setScore(score - 1);
     } else {
@@ -57,12 +62,12 @@ const Game = ({ score, myChoice, setScore }) => {
       <div className="game__you">
         <span className="text">You Picked</span>
         <div
-          className={`icon icon--${myChoice} ${
-            playerWin == "win" ? `icon icon--${myChoice}--winner` : ""
+          className={`icon icon--${preference} ${
+            playerWin === "win" ? `icon icon--${preference}--winner` : ""
           }`}
         ></div>
       </div>
-      {playerWin == "win" && (
+      {playerWin === "win" && (
         <div className="game__play">
           <span className="text">You Win</span>
           <Link to="/" className="play-again" onClick={() => setcomputer()}>
@@ -70,7 +75,7 @@ const Game = ({ score, myChoice, setScore }) => {
           </Link>
         </div>
       )}
-      {playerWin == "lose" && (
+      {playerWin === "lose" && (
         <div className="game__play">
           <span className="text">You Lose</span>
           <Link to="/" className="play-again" onClick={() => setcomputer()}>
@@ -78,7 +83,7 @@ const Game = ({ score, myChoice, setScore }) => {
           </Link>
         </div>
       )}
-      {playerWin == "draw" && (
+      {playerWin === "draw" && (
         <div className="game__play">
           <span className="text">Draw</span>
           <Link to="/" className="play-again" onClick={() => setcomputer()}>
@@ -89,12 +94,12 @@ const Game = ({ score, myChoice, setScore }) => {
 
       <div className="game__computer">
         <span className="text">The computer Picked</span>
-        {counter == 0 ? (
+        {counter === 0 ? (
           <div
             className={`icon icon--${computer} ${
-              playerWin == "lose" ? `icon icon--${computer}--winner` : ""
+              playerWin === "lose" ? `icon icon--${computer}--winner` : ""
             }`}
-          ></div>
+          >{computer}</div>
         ) : (
           <div className="counter">{counter}</div>
         )}
@@ -106,7 +111,7 @@ const Game = ({ score, myChoice, setScore }) => {
 export default Game;
 
 /*
- my choice:{myChoice} <br />
+ my choice:{preference} <br />
       computer choice:{computer} <br />
       Result:
       {playerWin == "win" && <h2>You Win</h2>}

@@ -17,7 +17,7 @@ function App() {
         <Score score={score} />
         <Routes>
           <Route exact path="/" element={ <HomePage setPreference={setPreference} />}  />
-          <Route path="/game" element={<GameUi preference={preference} score={score} setScore={setScore} />} />
+          <Route path="/game" element={<GameUi score={score} preference={preference} setScore={setScore} />} />
         </Routes>
       </div>
       <Footer />

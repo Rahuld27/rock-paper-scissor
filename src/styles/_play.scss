@@ -26,7 +26,14 @@
             transition: transform .2s;
 
             &--paper{
-                @include icon($imageP,$paper-gradient);
+                // @include icon($imageP,$paper-gradient);
+                background-color: #fff;
+                background-image: url($imageP);
+                background-position: center;
+                background-repeat: no-repeat;
+                border-color: $paper-gradient;
+                box-shadow: inset 0px 5px 6px grey, 
+                0px 8px darken($paper-gradient, 15%);
                 transform: translateX(1.5rem);
                 
                 &:hover{
@@ -36,7 +43,14 @@
 
             }
             &--scissors{
-                @include icon($imageS,$scissors-gradient);
+                // @include icon($imageS,$scissors-gradient);
+                background-color: #fff;
+                background-image: url($imageS);
+                background-position: center;
+                background-repeat: no-repeat;
+                border-color: $scissors-gradient;
+                box-shadow: inset 0px 5px 6px grey, 
+                0px 8px darken($scissors-gradient, 15%);
                 transform: translateX(8rem);
 
                 &:hover{
@@ -46,7 +60,14 @@
                 }
             }
             &--rock{
-                @include icon($imageR,$rock-gradient);
+                // @include icon($imageR,$rock-gradient);
+                background-color: #fff;
+                background-image: url($imageR);
+                background-position: center;
+                background-repeat: no-repeat;
+                border-color: $rock-gradient;
+                box-shadow: inset 0px 5px 6px grey, 
+                0px 8px darken($rock-gradient, 15%);
                 transform: translateX(-10rem) translateY(13rem);
             
 
